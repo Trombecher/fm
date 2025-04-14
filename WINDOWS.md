@@ -11,9 +11,15 @@
 
 ### Install Via Microsoft Store
 
+TODO
+
 ### Install Via Control Panel (deprecated?)
 
+TODO
+
 ### Install Via Settings (preferred)
+
+TODO
 
 ## Accepted Font Formats
 
@@ -28,9 +34,44 @@
 
 ## Registry Keys
 
-* System (global) font registration: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts`
-* System (global) font aliases: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitures`
-* User font registration: `HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts`
+### System (Global) Font Registration
+
+* Key: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts`
+* Format:
+  * `Name` (for TrueType font files): `<FONT_NAME> (TrueType)` 
+  * `Name` (for `.fon` font files): `<FONT_NAME> (All res)`
+  * `Name` (for `.fon` font files): `<FONT_NAME> (120)`
+  * `Name` (for `.fon` font files): `<FONT_NAME>`
+  * `Type`: `REG_SZ` (string)
+  * `Data`: `<FILE_NAME_WITH_EXTENSION>` (in system's font folder)
+
+Note: it seems to work without a suffix but there are sources that suggest adding it.
+
+### System (Global) Font Aliases
+
+* Key: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitures`
+* Format:
+  * `Name`: `<FONT_NAME>`, sometimes with `,<INT>` suffix (?)
+  * `Type`: `REG_SZ` (string)
+  * `Data`: `<FONT_NAME>`, sometimes with `,<INT>` suffix (?)
+
+### User Font Registration
+
+* Key: `HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts`
+
+### Undocumented Keys
+
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontMapperFamilyFallback`
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontMapper`
+  * `\FamilyDefaults` (legacy?)
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontLink`
+  * `\SystemLink`
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontIntensityCorrection`
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontDPI`
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Font Management`
+* `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Font Drivers`
+
+* `HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Font Management` (empty?)
 
 ## Font Cache
 
@@ -40,6 +81,8 @@
 
 ## Sources / Links
 
+* "How to delete Windows 10 system fonts for real, not just remove registry references to them": https://jackyan.com/blog/2020/08/how-to-delete-windows-10-system-fonts-for-real-not-just-remove-registry-references-to-them/
+* Microsoft Registry Docs "Windows registry information for advanced users": https://learn.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users
 * "How to Fix Corrupted Fonts on Windows 10 and 8": https://appuals.com/fix-corrupted-fonts-on-windows-10/
 * Microsoft ClearType PDF: https://learn.microsoft.com/en-us/typography/cleartype/pdfs/nowreadthis.pdf
 * Windows Internals Blog: https://helgeklein.com/blog/category/windows-internals/
@@ -49,6 +92,15 @@
 * Temporarily adding fonts "AddFontResourceW function (wingdi.h)": https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-addfontresourcew
 * Windows font paths "How to find all fonts paths on Windows": https://stackoverflow.com/questions/66929898/how-to-find-all-fonts-paths-on-windows
 * (Legacy) MS docs on "Add a font": https://support.microsoft.com/en-us/office/add-a-font-b7c5f17c-4426-4b53-967f-455339c564c1#:~:text=All%20fonts%20are%20stored%20in,files%20folder%20into%20this%20folder.
+* "Installing additional fonts": https://infosys.beckhoff.com/english.php?content=../content/1033/sw_os/7137826187.html&id=
+* "Installing Fonts with Group Policy and MSIs": https://deployhappiness.com/installing-fonts-with-group-policy/
+* Install fonts via gp: https://community.spiceworks.com/t/install-fonts-via-gpo/150594/22
+* HKLM unofficial documentation: https://renenyffenegger.ch/notes/Windows/registry/tree/HKEY_LOCAL_MACHINE/Software/Microsoft/Windows-NT/CurrentVersion/index
+
+### "Change Default Font" Tutorials
+
+* https://www.buildwindows.com/change-windows-font/
+* https://www.youtube.com/watch?v=6istx0pwgpc
 
 ### Discussions
 
